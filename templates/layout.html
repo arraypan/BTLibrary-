@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Bhartiya Temple Library</title>
+    <link rel="stylesheet" href="/static/css/normalize.css">
+    <link rel="stylesheet" href="/static/css/skeleton.css">
+    <link rel="stylesheet" href="/static/css/tacocat.css">
+  </head>
+  <body>
+    {% with messages=get_flashed_messages() %}
+    {% if messages %}
+        <div class="messages">
+          {% for message in messages %}
+          <div class="message">
+            {{ message }}
+          </div>
+          {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <div class="container">
+      <div class="row">
+        <div class="u-full-width">
+          <nav class="menu">
+            {% if current_user.is_authenticated %}
+
+                <a href="{{ url_for('new_taco') }}" class="" title="SignUp">Sign UP</a>
+            {% else %}
+            {% endif %}
+          </nav>
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+      <footer>
+      </footer>
+    </div>
+  </body>
+</html>
