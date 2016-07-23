@@ -4,7 +4,7 @@ from flask.ext.bcrypt import generate_password_hash
 from flask.ext.login import UserMixin
 from peewee import *
 
-DATABASE = SqliteDatabase('taabqqqaaaasss.db', check_same_thread=False)
+DATABASE = SqliteDatabase('taabssssqqqaaaasss.db', check_same_thread=False)
 
 
 class User(UserMixin, Model):
@@ -18,7 +18,7 @@ class User(UserMixin, Model):
         order_by = ('-joined_at',)
 
     @classmethod
-    def create_user(cls, email, password, admin=True):
+    def create_user(cls, email, password, admin=False):
         try:
             with DATABASE.transaction():
                 cls.create(
@@ -34,6 +34,7 @@ class Taco(Model):
     timestamp = DateTimeField(default=datetime.datetime.now)
     phoneNumber = TextField()
     fullName = TextField()
+    email = CharField(unique=True)
     member = TextField(null=True)
 
     class Meta:

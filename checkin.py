@@ -19,7 +19,7 @@ class MyModelView(ModelView):
         return current_user.is_authenticated and current_user.is_admin
 
 
-DEBUG = True
+DEBUG = False
 PORT = 8000
 HOST = '0.0.0.0'
 
@@ -102,7 +102,7 @@ def signIn():
 
 
         except models.DoesNotExist:
-            flash("We cant find you on System")
+            flash("We cant find you on System, Please fill out this form or Pess Check In")
             return redirect(url_for('new_taco'))
     return render_template('signin.html',form=form)
 
@@ -132,11 +132,13 @@ def register():
 def new_taco():
     form = forms.TacoForm()
     if form.validate_on_submit():
+        flash("User Created", "success")
         models.Taco.create(user=g.user._get_current_object(),
                            phoneNumber=form.phoneNumber.data,
                            fullName=form.fullName.data,
+                           email=form.email.data,
                            member=form.member.data)
-        flash("User Created", "success")
+
         return redirect(url_for('signIn'))
     return render_template('signup.html', form=form)
 

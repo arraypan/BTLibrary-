@@ -6,19 +6,30 @@
 
 <form method='POST' action=''>
   {{ form.hidden_tag() }}
+
   <div class="row">
-    <div class="six columns">
-      {{ render_field(form.phoneNumber) }}
-    </div>
-    <div class="six columns">
+  <div class="u-full-width">
+    {{ render_field(form.phoneNumber) }}
+  </div>
+
+    <div class="u-full-width">
       {{ render_field(form.fullName) }}
     </div>
-    <div class="six columns">
-      {{ render_field(form.member) }}
-    </div>
+       <div class="u-full-width">
+    {{ render_field(form.email) }}
   </div>
+        {{form.member.label}}
+
+        {% for subfield in form.member %}
+<tr>
+<th>{{ subfield.label }}</th>
+    <td>{{ subfield }}</td>
+</tr>
+{% endfor %}
+  </div>
+
   <div class="u-full-width">
-    <input type="submit" class="button-primary" value="Create">
+    <input type="submit" class="button-primary" value="Register">
   </div>
 </form>
 

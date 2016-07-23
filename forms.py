@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import StringField, PasswordField, TextAreaField, BooleanField
+from wtforms import StringField, PasswordField, TextAreaField, BooleanField, RadioField
 from wtforms.validators import DataRequired, Regexp, ValidationError, Email, Length, EqualTo
 
 from models import User, Taco, Check
@@ -40,10 +40,12 @@ class SigninForm(Form):
     phoneNumber = StringField('Enter Your Phone Number', [DataRequired(), Length(min=10)])
 
 class TacoForm(Form):
-    phoneNumber = StringField('Phone Number', validators=[DataRequired()])
-    email = StringField('Email', validators=[Email()])
     fullName = StringField('Full Name', validators=[DataRequired()])
-    member = BooleanField('Temple Member')
-
+    phoneNumber = StringField('Phone Number', validators=[DataRequired()])
+    email = StringField('Email Optional', validators=[Email()])
+    member = RadioField(
+        'Are you a Temple Member?',
+        choices=[('yes', 'Yes'), ('no', 'No')], default='no'
+    )
 
 
