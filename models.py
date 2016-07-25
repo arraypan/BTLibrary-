@@ -4,7 +4,7 @@ from flask.ext.bcrypt import generate_password_hash
 from flask.ext.login import UserMixin
 from peewee import *
 
-DATABASE = SqliteDatabase('taabssssqqqaaaasss.db', check_same_thread=False)
+DATABASE = SqliteDatabase('taabjjjjjjjjsffffffsssqqqaaaasss.db', check_same_thread=False)
 
 
 class User(UserMixin, Model):

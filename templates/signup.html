@@ -21,11 +21,15 @@
         {{form.member.label}}
 
         {% for subfield in form.member %}
-<tr>
-<th>{{ subfield.label }}</th>
-    <td>{{ subfield }}</td>
-</tr>
+<table>
+<td>
+<tr>{{ subfield.label }}</tr>
+    <tr>{{ subfield }}</tr>
+</td>
 {% endfor %}
+
+</table>
+
   </div>
 
   <div class="u-full-width">

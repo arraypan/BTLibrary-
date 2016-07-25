@@ -16,10 +16,11 @@ class MyHomeView(AdminIndexView):
 
 class MyModelView(ModelView):
     def is_accessible(self):
+
         return current_user.is_authenticated and current_user.is_admin
 
 
-DEBUG = False
+DEBUG = True
 PORT = 8000
 HOST = '0.0.0.0'
 
@@ -102,7 +103,7 @@ def signIn():
 
 
         except models.DoesNotExist:
-            flash("We cant find you on System, Please fill out this form or Pess Check In")
+            flash("We cant find you on System, Please fill out this form or Press Check In")
             return redirect(url_for('new_taco'))
     return render_template('signin.html',form=form)
 
